@@ -52,3 +52,14 @@ def test_get_book_genre_nonexistent():
 # - один сценарий на тест
 # - использовать pytest.mark.parametrize вместо parameterized
 # - убрать setUp
+def test_add_nonexistent_to_favorites():
+    collector = BooksCollector()
+    collector.add_book_in_favorites("Неизвестная книга")
+    assert "Неизвестная книга" not in collector.get_list_of_favorites_books()
+
+def test_delete_book_from_favorites():
+    collector = BooksCollector()
+    collector.add_new_book("Гарри Поттер")
+    collector.add_book_in_favorites("Гарри Поттер")
+    collector.delete_book_from_favorites("Гарри Поттер")
+    assert "Гарри Поттер" not in collector.get_list_of_favorites_books()
